@@ -4,9 +4,7 @@
 #include <assertcc/util/failmessage.h>
 #include <memory.h>
 
-namespace assertcc {
-
-namespace proposition {
+namespace assertcc::proposition {
 
 template <typename T, typename U>
 class ComparisonPropositions : public virtual subject::Base {
@@ -59,6 +57,4 @@ class ComparisonPropositions : public virtual subject::Base {
   }
 };
 
-}  // namespace proposition
-
-}  // namespace assertcc
+}  // namespace assertcc::proposition

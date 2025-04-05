@@ -12,9 +12,7 @@
 #include <string>
 #include <vector>
 
-namespace assertcc {
-
-namespace subject {
+namespace assertcc::subject {
 
 template <typename T>
 class MapSubject : public virtual Base,
@@ -62,6 +60,4 @@ class MapSubject : public virtual Base,
   }
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

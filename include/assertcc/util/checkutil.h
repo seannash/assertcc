@@ -2,9 +2,7 @@
 
 #include <initializer_list>
 
-namespace assertcc {
-
-namespace util {
+namespace assertcc::util {
 
 struct CheckUtil {
   template <template <typename...> typename List, typename T>
@@ -24,6 +22,4 @@ struct CheckUtil {
   }
 };
 
-}  // namespace util
-
-}  // namespace assertcc
+}  // namespace assertcc::util

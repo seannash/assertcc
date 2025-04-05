@@ -6,9 +6,7 @@
 
 #include <complex>
 
-namespace assertcc {
-
-namespace subject {
+namespace assertcc::subject {
 
 template <typename T>
 class ComplexSubject
@@ -25,6 +23,4 @@ class ComplexSubject
       : Base(failOnError, file, line), d_value(v) {}
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

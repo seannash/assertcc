@@ -4,9 +4,7 @@
 #include <assertcc/util/failmessage.h>
 #include <memory.h>
 
-namespace assertcc {
-
-namespace proposition {
+namespace assertcc::proposition {
 
 template <typename T, typename U>
 class ContainsKeyPropositions : public virtual subject::Base {
@@ -41,6 +39,4 @@ class ContainsKeyPropositions : public virtual subject::Base {
   }
 };
 
-}  // namespace proposition
-
-}  // namespace assertcc
+}  // namespace assertcc::proposition

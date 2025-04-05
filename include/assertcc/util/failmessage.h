@@ -6,9 +6,7 @@
 #include <string>
 #include <vector>
 
-namespace assertcc {
-
-namespace util {
+namespace assertcc::util {
 
 class FailMessage {
  private:
@@ -76,6 +74,4 @@ class FailMessage {
   }
 };
 
-}  // namespace util
-
-}  // namespace assertcc
+}  // namespace assertcc::util

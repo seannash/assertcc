@@ -8,9 +8,7 @@
 
 #include <span>
 
-namespace assertcc {
-
-namespace subject {
+namespace assertcc::subject {
 
 template <typename T>
 class SpanSubject : public virtual Base,
@@ -26,8 +24,6 @@ class SpanSubject : public virtual Base,
       : Base(failOnError, file, line), d_value(v) {}
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject
 
 #endif

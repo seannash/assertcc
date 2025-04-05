@@ -8,9 +8,7 @@
 #include <string>
 #include <vector>
 
-namespace assertcc {
-
-namespace subject {
+namespace assertcc::subject {
 
 template <typename T>
 class GenericSubject : public proposition::IsEqualToPropositions<GenericSubject<T>, T> {
@@ -24,6 +22,4 @@ class GenericSubject : public proposition::IsEqualToPropositions<GenericSubject<
       : Base(failOnError, file, line), d_value(v) {}
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

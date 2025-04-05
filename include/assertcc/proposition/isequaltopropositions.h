@@ -4,9 +4,7 @@
 #include <assertcc/util/failmessage.h>
 #include <memory.h>
 
-namespace assertcc {
-
-namespace proposition {
+namespace assertcc::proposition {
 
 template <typename T, typename U>
 class IsEqualToPropositions : public virtual subject::Base {
@@ -37,6 +35,4 @@ class IsEqualToPropositions : public virtual subject::Base {
   }
 };
 
-}  // namespace proposition
-
-}  // namespace assertcc
+}  // namespace assertcc::proposition

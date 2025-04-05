@@ -11,9 +11,7 @@
 #include <sstream>
 #include <string>
 
-namespace assertcc {
-
-namespace subject {
+namespace assertcc::subject {
 
 template <typename T>
 class StringSubject : public virtual Base,
@@ -129,6 +127,4 @@ class StringSubject : public virtual Base,
   }
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

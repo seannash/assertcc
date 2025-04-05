@@ -4,9 +4,8 @@
 #include <assertcc/subject/base.h>
 #include <assertcc/util/failmessage.h>
 
-namespace assertcc {
+namespace assertcc::subject {
 
-namespace subject {
 class BoolSubject : public virtual Base,
                     public proposition::IsEqualToPropositions<BoolSubject, bool> {
   const bool d_value;
@@ -41,6 +40,4 @@ class BoolSubject : public virtual Base,
   }
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

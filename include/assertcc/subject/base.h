@@ -1,8 +1,6 @@
 #pragma once
 
-namespace assertcc {
-
-namespace subject {
+namespace assertcc::subject {
 
 /**
     Base class that holds shared information between the subject classes and the
@@ -33,6 +31,4 @@ class Base {
       : d_file(file), d_line(line), d_failOnError(failOnError) {}
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

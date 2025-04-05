@@ -5,9 +5,7 @@
 #include <assertcc/proposition/isequaltopropositions.h>
 #include <assertcc/subject/base.h>
 
-namespace assertcc {
-
-namespace subject {
+namespace assertcc::subject {
 
 template <typename C>
 class SetSubject : public virtual Base,
@@ -24,6 +22,4 @@ class SetSubject : public virtual Base,
   const C* getValue() const override { return &d_value; }
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

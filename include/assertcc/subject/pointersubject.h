@@ -9,9 +9,7 @@
 #include <string>
 #include <type_traits>
 
-namespace assertcc {
-
-namespace subject {
+namespace assertcc::subject {
 template <typename T>
 class PointerSubject : public virtual Base,
                        public proposition::HasValueThatPropositions<T>,
@@ -27,6 +25,4 @@ class PointerSubject : public virtual Base,
       : Base(failOnError, file, line), d_value(v) {}
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

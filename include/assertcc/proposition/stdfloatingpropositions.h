@@ -6,9 +6,7 @@
 #include <limits>
 #include <memory>
 
-namespace assertcc {
-
-namespace proposition {
+namespace assertcc::proposition {
 
 template <typename T, typename U>
 class FloatingPropositions : public virtual subject::Base {
@@ -130,6 +128,4 @@ class FloatingPropositions : public virtual subject::Base {
   }
 };
 
-}  // namespace proposition
-
-}  // namespace assertcc
+}  // namespace assertcc::proposition

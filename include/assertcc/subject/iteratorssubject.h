@@ -11,9 +11,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace assertcc {
-
-namespace subject {
+namespace assertcc::subject {
 
 template <typename T>
 class IteratorsSubject {
@@ -93,6 +91,4 @@ class IteratorsSubject {
   }
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

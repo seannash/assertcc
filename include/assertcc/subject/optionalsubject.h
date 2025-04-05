@@ -7,9 +7,7 @@
 
 #include <optional>
 
-namespace assertcc {
-
-namespace subject {
+namespace assertcc::subject {
 
 template <typename T>
 class OptionalSubject : public virtual Base,
@@ -50,6 +48,4 @@ class OptionalSubject : public virtual Base,
   }
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

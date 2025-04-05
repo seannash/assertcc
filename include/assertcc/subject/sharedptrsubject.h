@@ -7,9 +7,8 @@
 
 #include <memory>
 
-namespace assertcc {
+namespace assertcc::subject {
 
-namespace subject {
 template <typename T>
 class SharedPtrSubject : public virtual Base,
                          public proposition::HasValueThatPropositions<T>,
@@ -25,6 +24,4 @@ class SharedPtrSubject : public virtual Base,
       : Base(failOnError, file, line), d_value(v) {}
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

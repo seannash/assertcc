@@ -6,9 +6,7 @@
 
 #include <memory>
 
-namespace assertcc {
-
-namespace subject {
+namespace assertcc::subject {
 
 template <typename T>
 class WeakPtrSubject {
@@ -56,6 +54,4 @@ class WeakPtrSubject {
   }
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

@@ -6,9 +6,7 @@
 #include <assertcc/proposition/stdfloatingpropositions.h>
 #include <assertcc/subject/base.h>
 
-namespace assertcc {
-
-namespace subject {
+namespace assertcc::subject {
 
 template <typename T>
 class FloatingSubject : public virtual Base,
@@ -33,6 +31,4 @@ class FloatingSubject : public virtual Base,
   }
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

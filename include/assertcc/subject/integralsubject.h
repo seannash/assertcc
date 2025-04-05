@@ -5,9 +5,7 @@
 #include <assertcc/proposition/isinpropositions.h>
 #include <assertcc/subject/base.h>
 
-namespace assertcc {
-
-namespace subject {
+namespace assertcc::subject {
 
 template <typename T>
 class IntegralSubject : public virtual Base,
@@ -24,6 +22,4 @@ class IntegralSubject : public virtual Base,
       : Base(failOnError, file, line), d_value(v) {}
 };
 
-}  // namespace subject
-
-}  // namespace assertcc
+}  // namespace assertcc::subject

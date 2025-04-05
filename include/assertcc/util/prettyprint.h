@@ -9,10 +9,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
-namespace assertcc {
-
-namespace util {
-
+namespace assertcc::util {
+/*
 template <typename Key, typename T, typename Compare, typename Allocator>
 std::ostream& operator<<(std::ostream& os, const std::map<Key, T, Compare, Allocator>& m) {
   os << "[std::map ";
@@ -131,7 +129,5 @@ std::ostream& operator<<(std::ostream& os, const std::weak_ptr<T> o) {
   os << " ]";
   return os;
 }
-
-}  // namespace util
-
-}  // namespace assertcc
+*/
+}  // namespace assertcc::util
