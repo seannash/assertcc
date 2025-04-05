@@ -25,18 +25,6 @@ class IsWrapperEmptyPropositions : public virtual subject::Base<U> {
     return *dynamic_cast<T*>(this);
   }
 
-  T& isNotEmpty() {
-    if (!*this->getObject()) {
-      util::FailMessage::create()
-          .failOnError(this->getFailOnError())
-          .file(this->getFile())
-          .line(this->getLine())
-          .fact("object to not have a value")
-          .fact("Got", this->getObjectAsString())
-          .build();
-    }
-    return *dynamic_cast<T*>(this);
-  }
 };
 
 }  // namespace assertcc::proposition
