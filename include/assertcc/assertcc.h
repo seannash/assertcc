@@ -23,12 +23,14 @@
 #include <assertcc/subject/stringviewsubject.h>
 #include <assertcc/subject/uniqueptrsubject.h>
 #include <assertcc/subject/weakptrsubject.h>
-#include <gtest/gtest.h>
+#include <assertcc/subject/functionsubject.h>
+
 
 #include <array>
 #include <concepts>
 #include <deque>
 #include <forward_list>
+#include <functional>
 #include <initializer_list>
 #include <list>
 #include <sstream>
@@ -247,6 +249,12 @@ template <typename T, std::size_t Extent>
 auto assert_that_internal(
     Adl dummy, bool failOnError, const char* file, int line, std::span<T, Extent>& v) {
   return subject::SpanSubject(failOnError, file, line, v);
+}
+
+template <typename R, typename... Args>
+auto assert_that_internal(
+    Adl dummy, bool failOnError, const char* file, int line, std::function<R(Args...)> v) {
+  return subject::FunctionSubject<R, Args...>(failOnError, file, line, v);
 }
 
 }  // namespace assertcc
