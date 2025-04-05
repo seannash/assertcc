@@ -2,8 +2,9 @@
 
 #include <assertcc/proposition/hasvaluethatpropositions.h>
 #include <assertcc/proposition/isequaltopropositions.h>
-#include <assertcc/proposition/optionalpropositions.h>
+//#include <assertcc/proposition/ispresentpropositions.h>
 #include <assertcc/proposition/valuecontainerpropositions.h>
+#include <assertcc/proposition/optionalpropositions.h>
 #include <assertcc/subject/base.h>
 
 #include <optional>
@@ -16,8 +17,8 @@ template <typename T>
 class OptionalSubject : public virtual Base<std::optional<T>>,
                         public proposition::HasValueThatPropositions<std::optional<T>>,
                         public proposition::IsEqualToPropositions<OptionalSubject<T>, std::optional<T>>,
-                        public proposition::OptionalPropositions<OptionalSubject<T>, std::optional<T>>,
-                        public proposition::ValueContainsPropositions<OptionalSubject<T>, std::optional<T>> {
+                        public proposition::ValueContainsPropositions<OptionalSubject<T>, std::optional<T>>,
+                        public proposition::OptionalPropositions<OptionalSubject<T>, std::optional<T>> {
   const std::optional<T> d_value;
 
  protected:

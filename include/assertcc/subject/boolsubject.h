@@ -1,13 +1,13 @@
 #pragma once
 
-#include <assertcc/proposition/boolpropositions.h>
+#include <assertcc/proposition/booleanpropositions.h>
 #include <assertcc/proposition/isequaltopropositions.h>
 #include <assertcc/subject/base.h>
 
 namespace assertcc::subject {
 
 class BoolSubject : virtual public Base<bool>,
-                    public proposition::BoolPropositions<BoolSubject>,
+                    public proposition::BooleanPropositions<BoolSubject>,
                     public proposition::IsEqualToPropositions<BoolSubject, bool> {
   const bool d_value;
 

@@ -6,7 +6,7 @@
 namespace assertcc::proposition {
 
 template <typename T>
-class BoolPropositions : public virtual subject::Base<bool> {
+class BooleanPropositions : public virtual subject::Base<bool> {
 
  public:
   T& isTrue() {

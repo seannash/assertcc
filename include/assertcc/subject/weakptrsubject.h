@@ -1,8 +1,9 @@
 #pragma once
 
 #include <assertcc/assertcc.h>
+#include <assertcc/proposition/expiredpropositions.h>
+#include <assertcc/proposition/ispresentpropositions.h>
 #include <assertcc/subject/base.h>
-#include <assertcc/proposition/weakptrpropositions.h>
 #include <assertcc/util/failmessage.h>
 
 #include <memory>
@@ -12,8 +13,9 @@ namespace assertcc::subject {
 
 template <typename T>
 class WeakPtrSubject : virtual public Base<std::weak_ptr<T>>,
-                       public proposition::WeakPtrPropositions<WeakPtrSubject<T>, T> {
-                        
+                       public proposition::ExpiredPropositions<WeakPtrSubject<T>, std::weak_ptr<T>>,
+                       public proposition::IsPresentPropositions<WeakPtrSubject<T>, std::weak_ptr<T>> {
+
   const std::weak_ptr<T> d_value;
 
  protected:

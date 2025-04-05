@@ -2,28 +2,34 @@
 
 #include <assertcc/subject/base.h>
 #include <assertcc/util/failmessage.h>
-#include <sstream>
+#include <memory.h>
+
+// IWYU pragma: private, include <assertcc/assertcc.h>
 
 namespace assertcc::proposition {
 
-template <typename T, typename U, typename Key, typename Value>
-class MapPropositions : public virtual subject::Base<U> {
- public:
+template <typename T, typename U>
+class ContainsMapEntryPropositions : public virtual subject::Base<U> {
 
+ public:
+  template <typename Key, typename Value>
   T& containsEntry(Key key, Value value) {
     auto iter = this->getObject()->find(key);
     if (iter == this->getObject()->end() || iter->second != value) {
+      std::stringstream ss;
+      ss << "(" << key << ", " << value << ")";
       util::FailMessage::create()
           .failOnError(this->getFailOnError())
           .file(this->getFile())
           .line(this->getLine())
-          .fact("map to contain entry", key)
-          .fact("with value", value)
-          .fact("Got", this->getObjectAsString());
+          .fact("Expected the map contains the entry: ", ss.str())
+          .fact("Collection did not contain the entry")
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
+  template <typename Key, typename Value>
   T& doesNotContainEntry(Key key, Value value) {
     auto iter = this->getObject()->find(key);
     if (iter != this->getObject()->end() && iter->second == value) {
@@ -33,12 +39,12 @@ class MapPropositions : public virtual subject::Base<U> {
           .failOnError(this->getFailOnError())
           .file(this->getFile())
           .line(this->getLine())
-          .fact("map does not contain entry", key)
-          .fact("with value", value)
-          .fact("Got", this->getObjectAsString());
+          .fact("Expected the map does not contains the entry: ", ss.str())
+          .fact("The collection does contain the entry")
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 };
 
-}  // namespace assertcc::proposition 
+}  // namespace assertcc::proposition

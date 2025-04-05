@@ -11,7 +11,7 @@ namespace assertcc::subject {
 
 template <typename T>
 class SharedPtrSubject : public virtual Base<T>,
-public proposition::HasValueThatPropositions<T>,
+                         public proposition::HasValueThatPropositions<T>,
                          public proposition::IsEqualToPropositions<SharedPtrSubject<T>, T>,
                          public proposition::IsNullPropositions<SharedPtrSubject<T>, T> {
   const T d_value;

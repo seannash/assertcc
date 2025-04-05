@@ -1,10 +1,10 @@
 #pragma once
 
 #include <assertcc/proposition/containskeypropositions.h>
+#include <assertcc/proposition/containsmapentrypropositions.h>
 #include <assertcc/proposition/hassizepropositions.h>
 #include <assertcc/proposition/isemptypropositions.h>
 #include <assertcc/proposition/isequaltopropositions.h>
-#include <assertcc/proposition/mappropositions.h>
 #include <assertcc/subject/base.h>
 
 #include <map>
@@ -19,10 +19,10 @@ namespace assertcc::subject {
 template <typename T>
 class MapSubject : public virtual Base<T>,
                    public proposition::ContainsKeyPropositions<MapSubject<T>, T>,
+                   public proposition::ContainsMapEntryPropositions<MapSubject<T>, T>,
                    public proposition::HasSizePropositions<MapSubject<T>, T>,
                    public proposition::IsEmptyPropositions<MapSubject<T>, T>,
-                   public proposition::IsEqualToPropositions<MapSubject<T>, T>,
-                   public proposition::MapPropositions<MapSubject<T>, T, typename T::key_type, typename T::mapped_type> {
+                   public proposition::IsEqualToPropositions<MapSubject<T>, T> {
   const T d_value;
 
  protected:
