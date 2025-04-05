@@ -13,7 +13,6 @@ class BoolSubject : virtual public Base<bool>,
 
  protected:
   const bool* getObject() const override { return &d_value; }
-  const std::string getObjectAsString() const override { return d_value ? "true" : "false"; }
   const std::string getObjectAsString(const bool& other) const override {
     return other ? "true" : "false";
   }
