@@ -14,16 +14,16 @@
 namespace assertcc::subject {
 
 template <typename T>
-class OptionalSubject : public virtual Base<std::optional<T>>,
-                        public proposition::HasValueThatPropositions<std::optional<T>>,
-                        public proposition::IsEqualToPropositions<OptionalSubject<T>, std::optional<T>>,
-                        public proposition::ValueContainsPropositions<OptionalSubject<T>, std::optional<T>>,
-                        public proposition::OptionalPropositions<OptionalSubject<T>, std::optional<T>> {
-  const std::optional<T> d_value;
+class OptionalSubject : public virtual Base<T>,
+                        public proposition::HasValueThatPropositions<T>,
+                        public proposition::IsEqualToPropositions<OptionalSubject<T>, T>,
+                        public proposition::ValueContainsPropositions<OptionalSubject<T>, T>,
+                        public proposition::OptionalPropositions<OptionalSubject<T>, T> {
+  const T d_value;
 
  protected:
-  const std::optional<T>* getObject() const override { return &d_value; }
-  const std::string getObjectAsString(const std::optional<T>& other) const override {
+  const T* getObject() const override { return &d_value; }
+  const std::string getObjectAsString(const T& other) const override {
     std::stringstream ss;
     if (other) {
       ss << "Optional(" << *other << ")";
@@ -34,8 +34,8 @@ class OptionalSubject : public virtual Base<std::optional<T>>,
   }
 
  public:
-  OptionalSubject(const bool failOnError, const char* file, int line, const std::optional<T>& v)
-      : Base<std::optional<T>>(failOnError, file, line), d_value(v) {}
+  OptionalSubject(const bool failOnError, const char* file, int line, const T& v)
+      : Base<T>(failOnError, file, line), d_value(v) {}
 
 };
 
