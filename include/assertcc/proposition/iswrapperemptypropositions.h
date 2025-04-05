@@ -9,7 +9,7 @@
 namespace assertcc::proposition {
 
 template <typename T, typename U>
-class IsWrapperEmptyPropositions : public virtual subject::Base<T> {
+class IsWrapperEmptyPropositions : public virtual subject::Base<U> {
 
  public:
   T& isEmpty() {

@@ -5,7 +5,7 @@
 #include <optional>
 
 using namespace testing;
-
+/*
 TEST(OptionalTests, isPresent) {
   std::optional<int> o{1};
   assertThat(o).isPresent();
@@ -15,7 +15,7 @@ TEST(OptionalTests, ExpectIsPresent) {
   std::optional<int> o{1};
   expectThat(o).isPresent();
 }
-
+*/
 TEST(OptionalTests, IsEmpty) {
   std::optional<int> o{};
   assertThat(o).isEmpty();

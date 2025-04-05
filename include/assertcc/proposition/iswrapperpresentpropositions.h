@@ -2,11 +2,15 @@
 
 #include <assertcc/subject/base.h>
 #include <assertcc/util/failmessage.h>
+#include <memory.h>
+
+// IWYU pragma: private, include <assertcc/assertcc.h>
 
 namespace assertcc::proposition {
 
 template <typename T, typename U>
-class OptionalPropositions : public virtual subject::Base<U> {
+class IsWrapperPresentPropositions : public virtual subject::Base<U> {
+
  public:
   T& isPresent() {
     if (!*this->getObject()) {
@@ -14,19 +18,20 @@ class OptionalPropositions : public virtual subject::Base<U> {
           .failOnError(this->getFailOnError())
           .file(this->getFile())
           .line(this->getLine())
-          .fact("optional to have a value")
-          .fact("Got", this->getObjectAsString());
+          .fact("object to have a value")
+          .fact("Got", "object without a value")
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
-  T& isEmpty() {
+  T& isNotPresent() {
     if (*this->getObject()) {
       util::FailMessage::create()
           .failOnError(this->getFailOnError())
           .file(this->getFile())
           .line(this->getLine())
-          .expected("Expected the optional to be empty.")
+          .fact("object to not have a value")
           .fact("Got", this->getObjectAsString())
           .build();
     }
@@ -34,4 +39,4 @@ class OptionalPropositions : public virtual subject::Base<U> {
   }
 };
 
-}  // namespace assertcc::proposition 
+}  // namespace assertcc::proposition

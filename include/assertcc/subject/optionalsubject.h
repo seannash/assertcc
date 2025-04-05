@@ -2,9 +2,9 @@
 
 #include <assertcc/proposition/hasvaluethatpropositions.h>
 #include <assertcc/proposition/isequaltopropositions.h>
-//#include <assertcc/proposition/ispresentpropositions.h>
+#include <assertcc/proposition/iswrapperpresentpropositions.h>
+#include <assertcc/proposition/iswrapperemptypropositions.h>
 #include <assertcc/proposition/valuecontainerpropositions.h>
-#include <assertcc/proposition/optionalpropositions.h>
 #include <assertcc/subject/base.h>
 
 #include <optional>
@@ -18,7 +18,8 @@ class OptionalSubject : public virtual Base<T>,
                         public proposition::HasValueThatPropositions<T>,
                         public proposition::IsEqualToPropositions<OptionalSubject<T>, T>,
                         public proposition::ValueContainsPropositions<OptionalSubject<T>, T>,
-                        public proposition::OptionalPropositions<OptionalSubject<T>, T> {
+                        public proposition::IsWrapperPresentPropositions<OptionalSubject<T>, T>,
+                        public proposition::IsWrapperEmptyPropositions<OptionalSubject<T>, T> {
   const T d_value;
 
  protected:
