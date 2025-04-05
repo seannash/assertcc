@@ -9,6 +9,7 @@
 #include <assertcc/subject/iteratorssubject.h>
 #include <assertcc/subject/mapsubject.h>
 #include <assertcc/subject/multimapsubject.h>
+#include <assertcc/subject/multisetsubject.h>
 #include <assertcc/subject/optionalsubject.h>
 #include <assertcc/subject/pointersubject.h>
 #include <assertcc/subject/priorityqueuesubject.h>
@@ -175,6 +176,24 @@ auto assert_that_internal(Adl dummy,
                           int line,
                           std::unordered_set<Key, Hash, KeyEqual, Allocator>& v) {
   return subject::SetSubject(failOnError, file, line, v);
+}
+
+template <typename Key, typename Compare, typename Allocator>
+auto assert_that_internal(Adl dummy,
+                          bool failOnError,
+                          const char* file,
+                          int line,
+                          std::multiset<Key, Compare, Allocator>& v) {
+  return subject::MultiSetSubject(failOnError, file, line, v);
+}
+
+template <typename Key, typename Hash, typename KeyEqual, typename Allocator>
+auto assert_that_internal(Adl dummy,
+                          bool failOnError,
+                          const char* file,
+                          int line,
+                          std::unordered_multiset<Key, Hash, KeyEqual, Allocator>& v) {
+  return subject::MultiSetSubject(failOnError, file, line, v);
 }
 
 template <typename CharT, typename Traits>
