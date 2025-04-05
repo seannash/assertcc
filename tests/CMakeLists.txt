@@ -14,6 +14,7 @@ add_executable(assertcc_unittests
     multimap.t.cc
     multiset.t.cc
     optional.t.cc
+    pair.t.cc
     pointers.t.cc
     priority_queue.t.cc
     set.t.cc

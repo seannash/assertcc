@@ -11,6 +11,7 @@
 #include <assertcc/subject/multimapsubject.h>
 #include <assertcc/subject/multisetsubject.h>
 #include <assertcc/subject/optionalsubject.h>
+#include <assertcc/subject/pairsubject.h>
 #include <assertcc/subject/pointersubject.h>
 #include <assertcc/subject/priorityqueuesubject.h>
 #include <assertcc/subject/setsubject.h>
@@ -102,6 +103,12 @@ template <typename T>
 auto assert_that_internal(
     Adl dummy, bool failOnError, const char* file, int line, std::optional<T> v) {
   return subject::OptionalSubject(failOnError, file, line, v);
+}
+
+template <typename T, typename V>
+auto assert_that_internal(
+    Adl dummy, bool failOnError, const char* file, int line, std::pair<T, V> v) {
+  return subject::PairSubject(failOnError, file, line, v);
 }
 
 template <typename T, typename std::enable_if<std::is_pointer<T>::value, T>::type* = nullptr>

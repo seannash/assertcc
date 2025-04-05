@@ -9,15 +9,15 @@
 namespace assertcc::proposition {
 
 template <typename T, typename U>
-class IsWrapperEmptyPropositions : public virtual subject::Base {
+class IsWrapperEmptyPropositions : public virtual subject::Base<T> {
 
  public:
   T& isEmpty() {
-    if (*getObject()) {
+    if (*this->getObject()) {
       util::FailMessage::create()
-          .failOnError(getFailOnError())
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("object to have a value")
           .fact("Got", "object without a value")
           .build();
@@ -26,13 +26,13 @@ class IsWrapperEmptyPropositions : public virtual subject::Base {
   }
 
   T& isNotEmpty() {
-    if (!*getObject()) {
+    if (!*this->getObject()) {
       util::FailMessage::create()
-          .failOnError(getFailOnError())
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("object to not have a value")
-          .fact("Got", getObjectAsString())
+          .fact("Got", this->getObjectAsString())
           .build();
     }
     return *dynamic_cast<T*>(this);
