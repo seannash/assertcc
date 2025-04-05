@@ -12,15 +12,15 @@
 namespace assertcc::subject {
 
 template <typename T>
-class WeakPtrSubject : virtual public Base<std::weak_ptr<T>>,
-                       public proposition::ExpiredPropositions<WeakPtrSubject<T>, std::weak_ptr<T>>,
-                       public proposition::IsPresentPropositions<WeakPtrSubject<T>, std::weak_ptr<T>> {
+class WeakPtrSubject : virtual public Base<T>,
+                       public proposition::ExpiredPropositions<WeakPtrSubject<T>, T>,
+                       public proposition::IsPresentPropositions<WeakPtrSubject<T>, T> {
 
-  const std::weak_ptr<T> d_value;
+  const T d_value;
 
  protected:
-  const std::weak_ptr<T>* getObject() const override { return &d_value; }
-  const std::string getObjectAsString(const std::weak_ptr<T>& other) const override {
+  const T* getObject() const override { return &d_value; }
+  const std::string getObjectAsString(const T& other) const override {
     std::stringstream ss;
     if (other.expired()) {
       ss << "expired weak pointer";
@@ -31,8 +31,8 @@ class WeakPtrSubject : virtual public Base<std::weak_ptr<T>>,
   }
 
  public:
-  WeakPtrSubject(const bool failOnError, const char* file, int line, const std::weak_ptr<T>& v)
-      : Base<std::weak_ptr<T>>(failOnError, file, line), d_value(v) {}
+  WeakPtrSubject(const bool failOnError, const char* file, int line, const T& v)
+      : Base<T>(failOnError, file, line), d_value(v) {}
 
   auto value() {
     auto sp = this->getObject()->lock();
