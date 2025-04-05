@@ -19,14 +19,6 @@ class PointerSubject : public virtual Base<T>,
 
  protected:
   const T* getObject() const override { return &d_value; }
-  const std::string getObjectAsString() const override {
-    if (d_value == nullptr) {
-      return "nullptr";
-    }
-    std::stringstream ss;
-    ss << "a pointer to " << d_value;
-    return ss.str();
-  }
   const std::string getObjectAsString(const T& other) const override {
     if (other == nullptr) {
       return "nullptr";

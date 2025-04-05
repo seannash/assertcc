@@ -21,20 +21,6 @@ class SetSubject : public virtual Base<C>,
 
  protected:
   const C* getObject() const override { return &d_value; }
-  const std::string getObjectAsString() const override {
-    std::stringstream ss;
-    ss << "set with elements: {";
-    bool isFirst = true;
-    for (const auto& elem : d_value) {
-      if (!isFirst) {
-        ss << ", ";
-      }
-      ss << elem;
-      isFirst = false;
-    }
-    ss << "}";
-    return ss.str();
-  }
   const std::string getObjectAsString(const C& other) const override {
     std::stringstream ss;
     ss << "set with elements: {";

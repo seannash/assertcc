@@ -17,12 +17,6 @@ class ComplexSubject
 
  protected:
   const std::complex<T>* getObject() const override { return &d_value; }
-  const std::string getObjectAsString() const override {
-    std::stringstream ss;
-    ss << d_value.real() << " + " << d_value.imag() << "i";
-    return ss.str();
-  }
-
   const std::string getObjectAsString(const std::complex<T>& other) const override {
     std::stringstream ss;
     ss << other.real() << " + " << other.imag() << "i";

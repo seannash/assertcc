@@ -18,9 +18,6 @@ class StackSubject : public virtual Base<T>,
 
  protected:
   const T* getObject() const override { return &d_value; }
-  const std::string getObjectAsString() const override {
-    return getObjectAsString(d_value);
-  }
   const std::string getObjectAsString(const T& other) const override {
     std::stringstream ss;
     ss << "stack with " << other.size() << " elements";

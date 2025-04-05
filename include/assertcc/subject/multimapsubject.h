@@ -23,20 +23,6 @@ class MultiMapSubject : public virtual Base<T>,
 
  protected:
   const T* getObject() const override { return &d_value; }
-  const std::string getObjectAsString() const override {
-    std::stringstream ss;
-    ss << "[";
-    bool isFirst = true;
-    for (const auto& pair : d_value) {
-      if (!isFirst) {
-        ss << ", ";
-      }
-      ss << pair.first << "->" << pair.second;
-      isFirst = false;
-    }
-    ss << "]";
-    return ss.str();
-  }
   const std::string getObjectAsString(const T& other) const override {
     std::stringstream ss;
     ss << "[";

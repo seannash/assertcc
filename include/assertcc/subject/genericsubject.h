@@ -17,11 +17,6 @@ class GenericSubject : public virtual Base<T>,
 
  protected:
   const T* getObject() const override { return &d_value; }
-  const std::string getObjectAsString() const override {
-    std::stringstream ss;
-    ss << d_value;
-    return ss.str();
-  }
   const std::string getObjectAsString(const T& other) const override {
     std::stringstream ss;
     ss << other;

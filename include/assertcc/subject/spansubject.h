@@ -17,9 +17,6 @@ class SpanSubject : public proposition::HasSizePropositions<SpanSubject<T>, T> p
 
  protected:
   const T* getObject() const override { return &d_value; }
-  const std::string getObjectAsString() const override {
-    return getObjectAsString(d_value);
-  }
   const std::string getObjectAsString(const T& other) const override {
     std::stringstream ss;
     ss << "span with elements: [";

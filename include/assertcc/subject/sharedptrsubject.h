@@ -18,9 +18,6 @@ public proposition::HasValueThatPropositions<T>,
 
  protected:
   const T* getObject() const override { return &d_value; }
-  const std::string getObjectAsString() const override {
-    return getObjectAsString(d_value);
-  }
   const std::string getObjectAsString(const T& other) const override {
     if (other == nullptr) {
       return "nullptr";

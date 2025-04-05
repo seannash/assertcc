@@ -17,7 +17,6 @@ public proposition::IsEqualToPropositions<IntegralSubject<T>, T>,
 
  protected:
   const T* getObject() const override { return &d_value; }
-  const std::string getObjectAsString() const override { return std::to_string(d_value); }
   const std::string getObjectAsString(const T& other) const override {
     return std::to_string(other);
   }

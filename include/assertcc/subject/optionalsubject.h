@@ -18,9 +18,6 @@ class OptionalSubject : public virtual Base<T>,
 
  protected:
   const T* getObject() const override { return &d_value; }
-  const std::string getObjectAsString() const override {
-    return d_value ? "a non-empty optional" : "an empty optional";
-  }
   const std::string getObjectAsString(const T& other) const override {
     return other ? "a non-empty optional" : "an empty optional";
   }
@@ -36,7 +33,7 @@ class OptionalSubject : public virtual Base<T>,
           .file(this->getFile())
           .line(this->getLine())
           .fact("optional to have a value")
-          .fact("Got", this->getObjectAsString());
+          .fact("Got", getObjectAsString(d_value));
     }
     return *this;
   }
@@ -48,7 +45,7 @@ class OptionalSubject : public virtual Base<T>,
           .file(this->getFile())
           .line(this->getLine())
           .expected("Expected the optional to be empty.")
-          .fact("Got", this->getObjectAsString())
+          .fact("Got", getObjectAsString(d_value))
           .build();
     }
     return *this;
