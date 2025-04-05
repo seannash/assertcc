@@ -32,7 +32,7 @@ add_executable(assertcc_unittests
 
 target_link_libraries(assertcc_unittests Threads::Threads GTest::Main)
 include_directories(assertcc_unittests assertcc)
-set_property(TARGET assertcc_unittests PROPERTY CXX_STANDARD 17)
+set_property(TARGET assertcc_unittests PROPERTY CXX_STANDARD 23)
 
 add_test(
     NAME assertcc_unittests

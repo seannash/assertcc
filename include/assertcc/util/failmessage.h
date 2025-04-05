@@ -1,6 +1,5 @@
 #pragma once
 
-#include <assertcc/util/prettyprint.h>
 #include <gtest/gtest.h>
 
 #include <string>

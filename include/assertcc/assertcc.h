@@ -33,6 +33,11 @@
 #include <string>
 #include <type_traits>
 #include <utility>
+#include <span>
+#include <unordered_set>
+#include <unordered_map>
+#include <map>
+#include <queue>
 
 #define assertThat(x) assertcc::assert_that_internal(assertcc::Adl(), true, __FILE__, __LINE__, x)
 #define expectThat(x) assertcc::assert_that_internal(assertcc::Adl(), false, __FILE__, __LINE__, x)
@@ -205,14 +210,10 @@ auto assert_that_internal(Adl dummy,
   return subject::PriorityQueueSubject(failOnError, file, line, v);
 }
 
-#if __cplusplus > 201703L
-
 template <typename T, std::size_t Extent>
 auto assert_that_internal(
     Adl dummy, bool failOnError, const char* file, int line, std::span<T, Extent>& v) {
   return subject::SpanSubject(failOnError, file, line, v);
 }
-
-#endif
 
 }  // namespace assertcc

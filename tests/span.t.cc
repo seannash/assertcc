@@ -6,8 +6,6 @@
 
 using namespace testing;
 
-#if __cplusplus > 201703L
-
 TEST(SpanTests, isEmpty) {
   std::vector<int> data{};
   std::span<int> view(data);
@@ -29,7 +27,5 @@ TEST(SpanTests, isNotEmpty) {
 TEST(SpanTests, Size) {
   std::vector<int> data{1, 2, 3};
   std::span<int> view(data);
-  assertThat(view).hasSize().isEqualTo(3);
+  assertThat(view).hasSizeThat().isEqualTo(3);
 }
-
-#endif
