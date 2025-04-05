@@ -1,18 +1,23 @@
 #pragma once
 
-#include <assertcc/proposition/hasvaluethatpropositions.h>
+#include <assertcc/proposition/hasbackthatpropositions.h>
+#include <assertcc/proposition/hasfrontthatpropositions.h>
+#include <assertcc/proposition/hassizepropositions.h>
 #include <assertcc/proposition/isequaltopropositions.h>
-#include <assertcc/proposition/iswrapperemptypropositions.h>
-#include <assertcc/proposition/valuecontainerpropositions.h>
+#include <assertcc/proposition/isemptypropositions.h>
 #include <assertcc/subject/base.h>
 
 #include <queue>
+#include <sstream>
 
 namespace assertcc::subject {
 
 template <typename T>
 class QueueSubject : public virtual Base<T>,
                      public proposition::IsEmptyPropositions<QueueSubject<T>, T>,
+                     public proposition::HasSizePropositions<QueueSubject<T>, T>,
+                     public proposition::HasFrontThatPropositions<QueueSubject<T>, T>,
+                     public proposition::HasBackThatPropositions<QueueSubject<T>, T>,
                      public proposition::IsEqualToPropositions<QueueSubject<T>, T> {
   const T d_value;
 
