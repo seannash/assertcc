@@ -14,6 +14,7 @@
 #include <assertcc/subject/pairsubject.h>
 #include <assertcc/subject/pointersubject.h>
 #include <assertcc/subject/priorityqueuesubject.h>
+#include <assertcc/subject/queuesubject.h>
 #include <assertcc/subject/setsubject.h>
 #include <assertcc/subject/sharedptrsubject.h>
 #include <assertcc/subject/spansubject.h>
@@ -114,6 +115,12 @@ auto assert_that_internal(
 template <typename T, typename std::enable_if<std::is_pointer<T>::value, T>::type* = nullptr>
 auto assert_that_internal(Adl dummy, bool failOnError, const char* file, int line, T v) {
   return subject::PointerSubject<T>(failOnError, file, line, v);
+}
+
+template <typename T, typename Container>
+auto assert_that_internal(
+    Adl dummy, bool failOnError, const char* file, int line, std::queue<T, Container>& q) {
+  return subject::QueueSubject<std::queue<T, Container>>(failOnError, file, line, q);
 }
 
 template <typename T>
