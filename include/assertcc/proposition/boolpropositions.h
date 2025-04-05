@@ -7,10 +7,6 @@ namespace assertcc::proposition {
 
 template <typename T>
 class BoolPropositions : public virtual subject::Base<bool> {
- protected:
-  virtual const bool* getObject() const = 0;
-  virtual const std::string getObjectAsString() const = 0;
-  virtual const std::string getObjectAsString(const bool& other) const = 0;
 
  public:
   T& isTrue() {
