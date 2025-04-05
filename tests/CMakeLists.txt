@@ -12,6 +12,7 @@ add_executable(assertcc_unittests
     int.t.cc
     iterators.t.cc
     map.t.cc
+    mdspan.t.cc
     multimap.t.cc
     multiset.t.cc
     optional.t.cc
