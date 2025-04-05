@@ -20,9 +20,21 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   endif()
 endif()
 
-add_library(asertcc INTERFACE)
-target_include_directories(asertcc INTERFACE include/)
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+add_library(assertcc INTERFACE
+   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+   $<INSTALL_INTERFACE:include>)
+target_include_directories(assertcc INTERFACE include/)
 install(DIRECTORY include/assertcc DESTINATION "include/")
+set_property(TARGET assertcc PROPERTY CXX_STANDARD 23)
 
 if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) AND BUILD_TESTING)
    enable_testing()
