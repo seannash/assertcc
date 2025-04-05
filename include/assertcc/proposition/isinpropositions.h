@@ -7,7 +7,7 @@
 namespace assertcc::proposition {
 
 template <typename T, typename U>
-class IsInPropositions : public virtual subject::Base {
+class IsInPropositions : public virtual subject::Base<U> {
  private:
   template <typename List, typename I>
   bool checkIsInRange(List& r, const I& value) {
@@ -25,55 +25,61 @@ class IsInPropositions : public virtual subject::Base {
     return false;
   }
 
- protected:
-  virtual const U* getValue() const = 0;
-
  public:
   T& isIn(std::initializer_list<U> r) {
-    if (!checkIsInRange(r, *getValue())) {
+    if (!checkIsInRange(r, *this->getObject())) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("is in range", r.begin(), r.end())
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isNotIn(std::initializer_list<U> r) {
-    if (checkIsInRange(r, *getValue())) {
+    if (checkIsInRange(r, *this->getObject())) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("is not in range", r.begin(), r.end())
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   template <typename List>
   T& isIn(List r) {
-    if (!checkIsInRange(r, *getValue())) {
+    if (!checkIsInRange(r, *this->getObject())) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("is in range", r.begin(), r.end())
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   template <template <typename...> typename List>
   T& isNotIn(List<U> r) {
-    if (checkIsInRange(r, *getValue())) {
+    if (checkIsInRange(r, *this->getObject())) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("is not in range", r.begin(), r.end())
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
+
 };
 
 }  // namespace assertcc::proposition

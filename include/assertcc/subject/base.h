@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace assertcc::subject {
 
 /**
@@ -10,6 +12,7 @@ namespace assertcc::subject {
    classes will use the functions to retrive the data. Virtual inheritance is
    used to avoid the diamond issue.
 */
+template <typename T>
 class Base {
  private:
   /** The source file of the assert_that statement was called in. */
@@ -21,10 +24,13 @@ class Base {
 
  protected:
   const char* getFile() const { return d_file; }
-
   int getLine() const { return d_line; }
-
   bool getFailOnError() const { return d_failOnError; }
+  virtual const T* getObject() const = 0;
+  virtual const std::string getObjectAsString() const {
+    return getObjectAsString(*getObject());
+  }
+  virtual const std::string getObjectAsString(const T& other) const = 0;
 
  public:
   Base(const bool failOnError, const char* file, int line)

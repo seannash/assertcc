@@ -8,25 +8,27 @@
 namespace assertcc::proposition {
 
 template <typename T, typename U>
-class HasSizePropositions : public virtual subject::Base {
- protected:
-  virtual const U* getValue() const = 0;
+class HasSizePropositions : public virtual subject::Base<U> {
 
  public:
   T& hasSize(std::size_t size) {
-    if (getValue()->size() != size) {
+    if (this->getObject()->size() != size) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("size is equal to", size)
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString());
     }
     return *dynamic_cast<T*>(this);
   }
 
   subject::IntegralSubject<std::size_t> hasSizeThat() {
     return subject::IntegralSubject<std::size_t>(
-        getFailOnError(), getFile(), getLine(), (std::size_t)getValue()->size());
+        this->getFailOnError(),
+        this->getFile(),
+        this->getLine(),
+        this->getObject()->size());
   }
 
 };

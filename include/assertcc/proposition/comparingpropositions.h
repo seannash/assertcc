@@ -7,51 +7,58 @@
 namespace assertcc::proposition {
 
 template <typename T, typename U>
-class ComparisonPropositions : public virtual subject::Base {
- protected:
-  virtual const U* getValue() const = 0;
+class ComparisonPropositions : public virtual subject::Base<U> {
 
  public:
+
   T& isLessThan(const U& other) {
-    if (*getValue() >= other) {
+    if (*this->getObject() >= other) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("value is not finite", other)
-          .fact("Got", getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isAtMost(const U& other) {
-    if (!(*getValue() <= other)) {
+    if (!(*this->getObject() <= other)) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("less than or equal to", other)
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isGreaterThan(const U& other) {
-    if (!(*getValue() > other)) {
+    if (!(*this->getObject() > other)) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("greater than", other)
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isAtLeast(const U& other) {
-    if (!(*getValue() >= other)) {
+    if (!(*this->getObject() >= other)) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("greater than or equal to", other)
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }

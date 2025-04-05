@@ -6,24 +6,29 @@
 
 namespace assertcc::subject {
 
-class BoolSubject : public virtual Base,
+class BoolSubject : virtual public Base<bool>,
                     public proposition::IsEqualToPropositions<BoolSubject, bool> {
   const bool d_value;
 
  protected:
-  const bool* getValue() const override { return &d_value; }
+  const bool* getObject() const override { return &d_value; }
+  const std::string getObjectAsString(const bool& other) const override  {
+    return other ? "true" : "false";
+  }
 
  public:
   BoolSubject(const bool failOnError, const char* file, int line, const bool v)
-      : Base(failOnError, file, line), d_value(v) {}
+      : Base<bool>(failOnError, file, line), d_value(v) {}
 
   BoolSubject& isTrue() {
     if (d_value != true) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("expected boolean to have the value of true")
-          .fact("value was ", d_value);
+          .fact("value was ", getObjectAsString(d_value))
+          .build();
     }
     return *this;
   }
@@ -31,10 +36,12 @@ class BoolSubject : public virtual Base,
   BoolSubject& isFalse() {
     if (d_value != false) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("expected boolean to have the value of false")
-          .fact("value was ", d_value);
+          .fact("value was ", getObjectAsString(d_value))
+          .build();
     }
     return *this;
   }

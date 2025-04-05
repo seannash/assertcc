@@ -9,14 +9,16 @@
 namespace assertcc::proposition {
 
 template <typename U>
-class HasValueThatPropositions : public virtual subject::Base {
- protected:
-  virtual const U* getValue() const = 0;
+class HasValueThatPropositions : public virtual subject::Base<U> {
 
  public:
   auto hasValueThat() {
     return assert_that_internal(
-        assertcc::Adl(), getFailOnError(), getFile(), getLine(), **getValue());
+        assertcc::Adl(),
+        this->getFailOnError(),
+        this->getFile(),
+        this->getLine(),
+        **this->getObject());
   }
 };
 

@@ -7,29 +7,32 @@
 namespace assertcc::proposition {
 
 template <typename T, typename U>
-class IsEqualToPropositions : public virtual subject::Base {
- protected:
-  virtual const U* getValue() const = 0;
+class IsEqualToPropositions : public virtual subject::Base<U> {
 
  public:
+ 
   T& isEqualTo(const U& other) {
-    if (!(*getValue() == other)) {
+    if (!(*this->getObject() == other)) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
-          .fact("not equal to", other)
-          .fact("Got", *getValue());
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
+          .fact("not equal to", this->getObjectAsString(other))
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isNotEqualTo(const U& other) {
-    if (*getValue() == other) {
+    if (*this->getObject() == other) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
-          .fact("not equal to", other)
-          .fact("Got", *getValue());
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
+          .fact("not equal to", this->getObjectAsString(other))
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }

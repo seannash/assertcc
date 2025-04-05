@@ -6,6 +6,8 @@
 #include <gtest/gtest-spi.h>
 #include <gtest/gtest.h>
 
+#include <sstream>
+
 using namespace testing;
 
 class Foo {
@@ -19,23 +21,34 @@ std::ostream& operator<<(std::ostream& os, const Foo& foo) {
   return os;
 }
 
-class FooSubject : public virtual assertcc::subject::Base,
+class FooSubject : public virtual assertcc::subject::Base<Foo>,
                    public assertcc::proposition::IsEqualToPropositions<FooSubject, Foo> {
   const Foo& d_value;
 
  protected:
-  const Foo* getValue() const override { return &d_value; }
+  const Foo* getObject() const override { return &d_value; }
+  const std::string getObjectAsString() const override {
+    return getObjectAsString(*getObject());
+  }
+  const std::string getObjectAsString(const Foo& other) const override {
+    std::stringstream ss;
+    ss << other;
+    return ss.str();
+  }
+
 
  public:
   FooSubject(const bool failOnError, const char* file, int line, const Foo& v)
-      : Base(failOnError, file, line), d_value(v) {}
+      : Base<Foo>(failOnError, file, line), d_value(v) {}
   FooSubject& contains42() {
-    if (getValue()->x != 42) {
+    if (getObject()->x != 42) {
       assertcc::util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("Expected the value to be equal to 42")
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *this;
   }

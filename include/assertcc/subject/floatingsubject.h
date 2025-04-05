@@ -9,7 +9,7 @@
 namespace assertcc::subject {
 
 template <typename T>
-class FloatingSubject : public virtual Base,
+class FloatingSubject : public virtual Base<T>,
                         public proposition::FloatingPropositions<FloatingSubject<T>, T>,
                         public proposition::IsInPropositions<FloatingSubject<T>, T>,
                         public proposition::ComparisonPropositions<FloatingSubject<T>, T> {
@@ -17,18 +17,22 @@ class FloatingSubject : public virtual Base,
   T d_tolerance;
 
  protected:
-  const T* getValue() const override { return &d_value; }
-
+  const T* getObject() const override { return &d_value; }
+  const std::string getObjectAsString() const override { return std::to_string(d_value); }
+  const std::string getObjectAsString(const T& other) const override {
+    return std::to_string(other);
+  }
   const T* getTolerance() const override { return &d_tolerance; }
 
  public:
   FloatingSubject(const bool failOnError, const char* file, int line, const T v)
-      : Base(failOnError, file, line), d_value(v), d_tolerance(std::numeric_limits<T>::epsilon()) {}
+      : Base<T>(failOnError, file, line), d_value(v), d_tolerance(std::numeric_limits<T>::epsilon()) {}
 
   FloatingSubject& isWithin(const T& tolerance) {
     d_tolerance = tolerance;
     return *this;
   }
+
 };
 
 }  // namespace assertcc::subject

@@ -10,25 +10,27 @@
 namespace assertcc::proposition {
 
 template <typename T, typename U>
-class HasLengthPropositions : public virtual subject::Base {
- protected:
-  virtual const U* getValue() const = 0;
+class HasLengthPropositions : public virtual subject::Base<U> {
 
  public:
   T& hasLength(const std::size_t length) {
-    if (getValue()->length() != length) {
+    if (this->getObject()->length() != length) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("length is equal to", length)
-          .fact("Got", getValue()->length());
+          .fact("Got", this->getObjectAsString());
     }
     return *dynamic_cast<T*>(this);
   }
 
   subject::IntegralSubject<std::size_t> hasLengthThat() {
     return subject::IntegralSubject<std::size_t>(
-        getFailOnError(), getFile(), getLine(), (std::size_t)getValue()->length());
+        this->getFailOnError(),
+        this->getFile(),
+        this->getLine(),
+        this->getObject()->length());
   }
 };
 

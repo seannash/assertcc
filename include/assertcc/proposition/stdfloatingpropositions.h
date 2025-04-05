@@ -9,123 +9,141 @@
 namespace assertcc::proposition {
 
 template <typename T, typename U>
-class FloatingPropositions : public virtual subject::Base {
+class FloatingPropositions : public virtual subject::Base<U> {
  protected:
-  virtual const U* getValue() const = 0;
   virtual const U* getTolerance() const = 0;
 
  public:
   T& isEqualTo(const U& other) {
-    double relativeDifference = (*getValue() - other) / other;
-    if (std::abs(relativeDifference) >= *getTolerance()) {
+    double relativeDifference = (*this->getObject() - other) / other;
+    if (std::abs(relativeDifference) >= *this->getTolerance()) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("value is equal to", other)
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString());
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isNotEqualTo(const U& other) {
-    double relativeDifference = (*getValue() - other) / other;
-    if (std::abs(relativeDifference) < *getTolerance()) {
+    double relativeDifference = (*this->getObject() - other) / other;
+    if (std::abs(relativeDifference) < *this->getTolerance()) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("value is notequal to", other)
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isNan() {
-    if (!std::isnan(*getValue())) {
+    if (!std::isnan(*this->getObject())) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("value is not a number")
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isNotNan() {
-    if (std::isnan(*getValue())) {
+    if (std::isnan(*this->getObject())) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("value is not the special not a number value")
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isFinite() {
-    if (!std::isfinite(*getValue())) {
+    if (!std::isfinite(*this->getObject())) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("value is finite")
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isNotFinite() {
-    if (std::isfinite(*getValue())) {
+    if (std::isfinite(*this->getObject())) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("value is not finite")
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isPositiveInfinity() {
-    if ((*getValue()) != std::numeric_limits<U>::infinity()) {
+    if ((*this->getObject()) != std::numeric_limits<U>::infinity()) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("value is not finite")
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isNegativeInfinity() {
-    if ((*getValue()) != -std::numeric_limits<U>::infinity()) {
+    if ((*this->getObject()) != -std::numeric_limits<U>::infinity()) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("value is not finite")
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isZero() {
-    if ((*getValue()) != 0.0) {
+    if ((*this->getObject()) != 0.0) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("value is zero")
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isNotZero() {
-    if ((*getValue()) == 0.0) {
+    if ((*this->getObject()) == 0.0) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("value is not zero")
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString());
     }
     return *dynamic_cast<T*>(this);
   }
+
 };
 
 }  // namespace assertcc::proposition

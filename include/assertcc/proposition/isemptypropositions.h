@@ -7,29 +7,31 @@
 namespace assertcc::proposition {
 
 template <typename T, typename U>
-class IsEmptyPropositions : public virtual subject::Base {
- protected:
-  virtual const U* getValue() const = 0;
+class IsEmptyPropositions : public virtual subject::Base<U> {
 
  public:
   T& isEmpty() {
-    if (!getValue()->empty()) {
+    if (!this->getObject()->empty()) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("map to be empty")
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }
 
   T& isNotEmpty() {
-    if (getValue()->empty()) {
+    if (this->getObject()->empty()) {
       util::FailMessage::create()
-          .file(getFile())
-          .line(getLine())
+          .failOnError(this->getFailOnError())
+          .file(this->getFile())
+          .line(this->getLine())
           .fact("map to not be empty")
-          .fact("Got", *getValue());
+          .fact("Got", this->getObjectAsString())
+          .build();
     }
     return *dynamic_cast<T*>(this);
   }

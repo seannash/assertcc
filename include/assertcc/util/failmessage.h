@@ -36,9 +36,9 @@ class FailMessage {
     return *this;
   }
 
-  template<typename T, typename std::enable_if<std::is_same<T, bool>::value>::type* = nullptr>
+  template <typename T, typename std::enable_if<std::is_same<T, bool>::value>::type* = nullptr>
   FailMessage& fact(const std::string& key, bool value) {
-    d_buffer << key << ": " << (value? "true" : "false")<< "\n";
+    d_buffer << key << ": " << (value ? "true" : "false") << "\n";
     return *this;
   }
 
@@ -46,7 +46,6 @@ class FailMessage {
     d_buffer << key << "\n";
     return *this;
   }
-
 
   FailMessage& expected(std::string msg) {
     fact(msg);
@@ -68,10 +67,15 @@ class FailMessage {
     return *this;
   }
 
-  ~FailMessage() {
-    GTEST_MESSAGE_AT_(
-        d_file.c_str(), d_line, d_buffer.str().c_str(), ::testing::TestPartResult::kFatalFailure);
+  void build() {
+    auto fatality = ::testing::TestPartResult::kFatalFailure;
+    if (!d_failOnError) {
+      fatality = ::testing::TestPartResult::kNonFatalFailure;
+    }
+    GTEST_MESSAGE_AT_(d_file.c_str(), d_line, d_buffer.str().c_str(), fatality);
   }
+
+  ~FailMessage() {}
 };
 
 }  // namespace assertcc::util
