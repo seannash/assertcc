@@ -1,6 +1,7 @@
 #pragma once
 
-#include <gtest/gtest.h>
+#include <catch2/catch_message.hpp>
+#include <catch2/catch_test_macros.hpp>
 
 #include <string>
 #include <vector>
@@ -67,11 +68,7 @@ class FailMessage {
   }
 
   void build() {
-    auto fatality = ::testing::TestPartResult::kFatalFailure;
-    if (!d_failOnError) {
-      fatality = ::testing::TestPartResult::kNonFatalFailure;
-    }
-    GTEST_MESSAGE_AT_(d_file.c_str(), d_line, d_buffer.str().c_str(), fatality);
+    FAIL(d_buffer.str());
   }
 
   ~FailMessage() {}

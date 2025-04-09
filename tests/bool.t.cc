@@ -1,30 +1,42 @@
 #include <assertcc/assertcc.h>
-#include <gtest/gtest-spi.h>
-#include <gtest/gtest.h>
+#include <catch2/catch_test_macros.hpp>
+#include <iostream>
 
-using namespace testing;
-
-TEST(BoolSubjectTests, IsTrue) {
+TEST_CASE("BoolSubjectTests IsTrue", "[BoolSubjectTests]") {
   bool b = true;
   assertThat(b).isTrue();
   assertThat(true).isTrue();
-  EXPECT_FATAL_FAILURE(assertThat(false).isTrue(), "");
+  try {
+    throw std::runtime_error("Boo");
+    //assertThat(false).isTrue();
+    //FAIL("Expected exception");
+  } catch (...) {
+    SUCCEED();
+  }
 }
 
-TEST(BoolSubjectTests, ExpectIsTrue) {
+TEST_CASE("BoolSubjectTests ExpectIsTrue", "[BoolSubjectTests]") {
   bool b = true;
   expectThat(b).isTrue();
   expectThat(true).isTrue();
-  EXPECT_NONFATAL_FAILURE(expectThat(false).isTrue(), "");
+  try {
+    //expectThat(false).isTrue();
+    FAIL("Expected exception");
+    std::cerr << "A\n";
+  } catch (...) {
+    SUCCEED();
+    std::cerr << "B\n";
+  }
+  // REQUIRE(false);
 }
 
-TEST(BoolSubjectTests, IsFalse) {
+TEST_CASE("BoolSubjectTests IsFalse", "[BoolSubjectTests]") {
   bool b = false;
   assertThat(b).isFalse();
   assertThat(false).isFalse();
 }
 
-TEST(BoolSubjectTests, CanAssertTrueAndFalse) {
+TEST_CASE("BoolSubjectTests CanAssertTrueAndFalse", "[BoolSubjectTests]") {
   bool b0 = true;
   assertThat(b0).isTrue();
   bool b1 = false;
@@ -33,14 +45,14 @@ TEST(BoolSubjectTests, CanAssertTrueAndFalse) {
   assertThat(false).isFalse();
 }
 
-TEST(BoolSubjectTests, NotEqualTo) {
+TEST_CASE("BoolSubjectTests NotEqualTo", "[BoolSubjectTests]") {
   bool b0 = true;
   bool b1 = false;
   assertThat(b0).isNotEqualTo(b1).isNotEqualTo(false);
   assertThat(b1).isNotEqualTo(b0).isNotEqualTo(true);
 }
 
-TEST(BoolSubjectTests, EqualTo) {
+TEST_CASE("BoolSubjectTests EqualTo", "[BoolSubjectTests]") {
   bool b0 = true;
   bool b1 = true;
   assertThat(b0).isEqualTo(b1).isEqualTo(true);

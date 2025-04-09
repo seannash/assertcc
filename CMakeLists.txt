@@ -6,6 +6,18 @@ project(
   DESCRIPTION "A Fluent Assertions library."
   LANGUAGES CXX)
 
+
+# Add FetchContent
+include(FetchContent)
+
+# Declare Catch2
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.5.3
+)
+FetchContent_MakeAvailable(Catch2)
+
 set(INSTALL_GTEST OFF)
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
