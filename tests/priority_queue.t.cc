@@ -2,7 +2,9 @@
 #include <gtest/gtest-spi.h>
 #include <gtest/gtest.h>
 
-#include <deque>
+#include <functional>
+#include <queue>
+#include <vector>
 
 using namespace testing;
 

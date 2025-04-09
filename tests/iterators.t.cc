@@ -2,6 +2,10 @@
 #include <gtest/gtest-spi.h>
 #include <gtest/gtest.h>
 
+#include <array>
+#include <deque>
+#include <forward_list>
+#include <list>
 #include <vector>
 
 using namespace testing;

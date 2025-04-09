@@ -3,6 +3,8 @@
 #include <gtest/gtest-spi.h>
 #include <gtest/gtest.h>
 
+#include <ostream>
+
 using namespace testing;
 
 class A {

@@ -2,6 +2,8 @@
 #include <gtest/gtest-spi.h>
 #include <gtest/gtest.h>
 
+#include <deque>
+#include <memory>
 #include <stack>
 
 using namespace testing;

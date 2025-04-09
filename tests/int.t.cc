@@ -2,6 +2,8 @@
 #include <gtest/gtest-spi.h>
 #include <gtest/gtest.h>
 
+#include <vector>
+
 using namespace testing;
 
 TEST(IntTests, IsEqualTo) {

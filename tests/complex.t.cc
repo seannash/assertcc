@@ -18,12 +18,16 @@ TEST(ComplexTests, IsNotEqualTo) {
   expectThat(a).isNotEqualTo(b);
 }
 
+TEST(ComplexTests, IsNotEqualTo_Fails) {
+  static std::complex<int> a(3, 2);
+  static std::complex<int> b(3, 2);
+  EXPECT_FATAL_FAILURE(assertThat(a).isNotEqualTo(b), "");
+}
+
 TEST(ComplexTests, IsNotEqualTo_Failure) {
   std::complex<int> a(1, 2);
   std::complex<int> b(1, 23);
   assertThat(a).isNotEqualTo(3).isNotEqualTo(b);
-  EXPECT_FATAL_FAILURE(assertThat(std::complex<int>(1, 2)).isNotEqualTo(std::complex<int>(1, 2)),
-                       "");
 }
 
 TEST(ComplexTestsTests, IsIn) {

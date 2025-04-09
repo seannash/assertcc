@@ -8,12 +8,14 @@ TEST(BoolSubjectTests, IsTrue) {
   bool b = true;
   assertThat(b).isTrue();
   assertThat(true).isTrue();
+  EXPECT_FATAL_FAILURE(assertThat(false).isTrue(), "");
 }
 
 TEST(BoolSubjectTests, ExpectIsTrue) {
   bool b = true;
   expectThat(b).isTrue();
   expectThat(true).isTrue();
+  EXPECT_NONFATAL_FAILURE(expectThat(false).isTrue(), "");
 }
 
 TEST(BoolSubjectTests, IsFalse) {

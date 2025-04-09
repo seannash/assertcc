@@ -3,6 +3,7 @@
 #include <gtest/gtest.h>
 
 #include <string>
+#include <string_view>
 
 using namespace testing;
 
@@ -10,7 +11,7 @@ TEST(StringView, isEmpty) {
   std::string_view sv;
   assertThat(sv).isEmpty();
 }
-/*
+
 TEST(StringView, ExpectIsEmpty) {
   std::string_view sv;
   expectThat(sv).isEmpty();
@@ -33,4 +34,4 @@ TEST(StringView, HasSize) {
   std::string_view sv(str);
   assertThat(sv).hasLength(5);
 }
-*/
+

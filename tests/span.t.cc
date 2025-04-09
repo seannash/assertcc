@@ -2,7 +2,8 @@
 #include <gtest/gtest-spi.h>
 #include <gtest/gtest.h>
 
-#include <string>
+#include <span>
+#include <vector>
 
 using namespace testing;
 

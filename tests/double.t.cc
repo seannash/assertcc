@@ -2,6 +2,9 @@
 #include <gtest/gtest-spi.h>
 #include <gtest/gtest.h>
 
+#include <limits>
+#include <vector>
+
 using namespace testing;
 
 TEST(DoubleTests, IsNan) {
