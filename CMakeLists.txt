@@ -6,6 +6,8 @@ project(
   DESCRIPTION "A Fluent Assertions library."
   LANGUAGES CXX)
 
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+
 set(INSTALL_GTEST OFF)
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
