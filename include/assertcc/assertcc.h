@@ -44,6 +44,11 @@
 #include <map>
 #include <queue>
 
+#if __cpp_lib_mdspan >= 202207L
+#include <mdspan>
+#include <assertcc/subject/mdspansubject.h>
+#endif
+
 #define assertThat(x) assertcc::assert_that_internal(assertcc::Adl(), true, __FILE__, __LINE__, x)
 #define expectThat(x) assertcc::assert_that_internal(assertcc::Adl(), false, __FILE__, __LINE__, x)
 
@@ -250,6 +255,14 @@ auto assert_that_internal(
     Adl dummy, bool failOnError, const char* file, int line, std::span<T, Extent>& v) {
   return subject::SpanSubject(failOnError, file, line, v);
 }
+
+#if __cpp_lib_mdspan >= 202207L
+template <typename T, typename U>
+auto assert_that_internal(
+    Adl dummy, bool failOnError, const char* file, int line, std::mdspan<T,U>& v) {
+  return subject::MdspanSubject(failOnError, file, line, v);
+}
+#endif
 
 template <typename R, typename... Args>
 auto assert_that_internal(

@@ -27,7 +27,7 @@ TEST(MdspanTests, isNotEmpty) {
   std::mdspan<int, std::extents<size_t, 3, 4>> matrix(data.data());
   assertThat(matrix).isNotEmpty();
 }
-/*
+
 TEST(MdspanTests, Size) {
   std::vector<int> data = {
      1, 2, 3, 4,
@@ -35,8 +35,7 @@ TEST(MdspanTests, Size) {
      9, 10, 11, 12
   };
   std::mdspan<int, std::extents<size_t, 3, 4>> matrix(data.data());
-  assertThat(matrix).hasSizeThat().isEqualTo(3);
+  assertThat(matrix).hasSizeThat().isEqualTo(12);
 }
-*/
 
 #endif
