@@ -1,7 +1,6 @@
 include_directories(../include)
 
-find_package(GTest)
-find_package(Threads)
+find_package(Threads REQUIRED)
 
 add_executable(assertcc_unittests
     bool.t.cc
@@ -35,7 +34,7 @@ add_executable(assertcc_unittests
     weak_ptr.t.cc
 )
 
-target_link_libraries(assertcc_unittests Threads::Threads GTest::Main)
+target_link_libraries(assertcc_unittests Threads::Threads GTest::gtest_main)
 include_directories(assertcc_unittests assertcc)
 set_property(TARGET assertcc_unittests PROPERTY CXX_STANDARD 23)
 
