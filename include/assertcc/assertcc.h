@@ -44,9 +44,13 @@
 #include <map>
 #include <queue>
 
-#if __cpp_lib_mdspan >= 202207L
+#if __cpp_lib_mdspan
 #include <mdspan>
 #include <assertcc/subject/mdspansubject.h>
+#endif
+
+#if __cpp_lib_flat_map
+#include <flat_map>
 #endif
 
 #define assertThat(x) assertcc::assert_that_internal(assertcc::Adl(), true, __FILE__, __LINE__, x)
@@ -184,6 +188,19 @@ auto assert_that_internal(Adl dummy,
   return subject::MultiMapSubject(failOnError, file, line, v);
 }
 
+#ifdef __cpp_lib_flat_map  
+
+template <typename Key, typename T, typename Compare, typename KeyContainer, typename MappedContainer>
+auto assert_that_internal(Adl dummy,
+                          bool failOnError,
+                          const char* file,
+                          int line,
+                          std::flat_map<Key, T, Compare, KeyContainer, MappedContainer>& v) {
+  return subject::MapSubject(failOnError, file, line, v);
+}
+
+#endif
+
 template <typename Key, typename Compare, typename Allocator>
 auto assert_that_internal(
     Adl dummy, bool failOnError, const char* file, int line, std::set<Key, Compare, Allocator>& v) {
@@ -256,7 +273,7 @@ auto assert_that_internal(
   return subject::SpanSubject(failOnError, file, line, v);
 }
 
-#if __cpp_lib_mdspan >= 202207L
+#ifdef __cpp_lib_mdspan
 template <typename T, typename U>
 auto assert_that_internal(
     Adl dummy, bool failOnError, const char* file, int line, std::mdspan<T,U>& v) {

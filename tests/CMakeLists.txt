@@ -6,6 +6,7 @@ add_executable(assertcc_unittests
     bool.t.cc
     complex.t.cc
     double.t.cc
+    flat_map.t.cc
     float.t.cc
     function.t.cc
     int.t.cc

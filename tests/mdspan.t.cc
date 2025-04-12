@@ -1,7 +1,7 @@
 #include <assertcc/assertcc.h>
 #include <gtest/gtest.h>
 
-#if __cpp_lib_mdspan >= 202207L
+#ifdef __cpp_lib_mdspan
 
 #include <mdspan>
 #include <vector>
