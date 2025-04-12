@@ -75,7 +75,7 @@ The iterator subject and weak_ptr subject classes implement propositions directl
 
 ### Example creating a new subject
 
-The file [user_subject.cc](tests/user_subject.cc) serves as an example of how to add a new subject and an assertThat. This example
+The file [user_subject.t.cc](tests/user_subject.cc) serves as an example of how to add a new subject and an assertThat. This example
 supports isEqualTo and isNotEqualTo propositions using the mixin and has an inline propositions to check if the Foo class contains
 the number 42.
 
