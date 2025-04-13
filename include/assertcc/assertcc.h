@@ -25,7 +25,6 @@
 #include <assertcc/subject/weakptrsubject.h>
 #include <assertcc/subject/functionsubject.h>
 
-
 #include <array>
 #include <concepts>
 #include <deque>
@@ -51,6 +50,7 @@
 
 #if __cpp_lib_flat_map
 #include <flat_map>
+#include <assertcc/subject/flatmultimapsubject.h>
 #endif
 
 #define assertThat(x) assertcc::assert_that_internal(assertcc::Adl(), true, __FILE__, __LINE__, x)
@@ -197,6 +197,15 @@ auto assert_that_internal(Adl dummy,
                           int line,
                           std::flat_map<Key, T, Compare, KeyContainer, MappedContainer>& v) {
   return subject::MapSubject(failOnError, file, line, v);
+}
+
+template <typename Key, typename T, typename Compare, typename KeyContainer, typename MappedContainer>
+auto assert_that_internal(Adl dummy,
+                          bool failOnError,
+                          const char* file,
+                          int line,
+                          std::flat_multimap<Key, T, Compare, KeyContainer, MappedContainer>& v) {
+  return subject::FlatMultiMapSubject(failOnError, file, line, v);
 }
 
 #endif
