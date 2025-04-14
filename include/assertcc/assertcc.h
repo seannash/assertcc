@@ -50,7 +50,6 @@
 
 #if __cpp_lib_flat_map
 #include <flat_map>
-#include <assertcc/subject/flatmultimapsubject.h>
 #endif
 
 #define assertThat(x) assertcc::assert_that_internal(assertcc::Adl(), true, __FILE__, __LINE__, x)
@@ -205,7 +204,7 @@ auto assert_that_internal(Adl dummy,
                           const char* file,
                           int line,
                           std::flat_multimap<Key, T, Compare, KeyContainer, MappedContainer>& v) {
-  return subject::FlatMultiMapSubject(failOnError, file, line, v);
+  return subject::MultiMapSubject(failOnError, file, line, v);
 }
 
 #endif

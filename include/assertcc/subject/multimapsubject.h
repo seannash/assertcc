@@ -16,6 +16,8 @@ namespace assertcc::subject {
 
 template <typename T>
 class MultiMapSubject : public virtual Base<T>,
+                        public proposition::ContainsKeyPropositions<MultiMapSubject<T>, T>,
+                        public proposition::ContainsMapEntryPropositions<MultiMapSubject<T>, T>,
                         public proposition::HasSizePropositions<MultiMapSubject<T>, T>,
                         public proposition::IsEmptyPropositions<MultiMapSubject<T>, T>,
                         public proposition::IsEqualToPropositions<MultiMapSubject<T>, T> {
