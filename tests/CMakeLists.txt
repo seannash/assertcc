@@ -8,6 +8,7 @@ add_executable(assertcc_unittests
     double.t.cc
     flat_map.t.cc
     flat_multimap.t.cc
+    flat_set.t.cc
     float.t.cc
     function.t.cc
     int.t.cc

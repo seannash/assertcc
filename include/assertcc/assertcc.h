@@ -209,6 +209,19 @@ auto assert_that_internal(Adl dummy,
 
 #endif
 
+#if __cpp_lib_flat_set
+
+template <typename Key, typename Compare, typename Container>
+auto assert_that_internal(Adl dummy,
+                          bool failOnError,
+                          const char* file,
+                          int line,
+                          std::flat_set<Key, Compare, Container>& v) {
+  return subject::SetSubject(failOnError, file, line, v);
+}
+
+#endif
+
 template <typename Key, typename Compare, typename Allocator>
 auto assert_that_internal(
     Adl dummy, bool failOnError, const char* file, int line, std::set<Key, Compare, Allocator>& v) {
