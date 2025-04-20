@@ -25,11 +25,11 @@ class MultiSetSubject : public virtual Base<T>,
  protected:
   const T* getObject() const override { return &d_value; }
 
-  const std::string getObjectAsString() const override {
+  const std::string getObjectAsString(const T& other) const override {
     std::stringstream ss;
     ss << "[";
     bool isFirst = true;
-    for (const auto& elem : d_value) {
+    for (const auto& elem : other) {
       if (!isFirst) {
         ss << ", ";
       }
