@@ -37,3 +37,15 @@ TEST(SetTests, Size) {
   std::set<int> x{1, 2, 3};
   assertThat(x).hasSizeThat().isEqualTo(3);
 }
+
+TEST(SetTests, Contains) {
+  std::set<int> x{1, 2, 3};
+  assertThat(x).contains(1);
+  assertThat(x).contains(2);
+  assertThat(x).contains(3);
+}
+
+TEST(SetTests, DoesNotContain) {
+  std::set<int> x{1, 2, 3};
+  assertThat(x).doesNotContain(4);
+}

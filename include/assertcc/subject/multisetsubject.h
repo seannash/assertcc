@@ -1,5 +1,6 @@
 #pragma once
 
+#include <assertcc/proposition/containspropositions.h>
 #include <assertcc/proposition/hassizepropositions.h>
 #include <assertcc/proposition/isemptypropositions.h>
 #include <assertcc/proposition/isequaltopropositions.h>
@@ -19,7 +20,8 @@ template <typename T>
 class MultiSetSubject : public virtual Base<T>,
                         public proposition::HasSizePropositions<MultiMapSubject<T>, T>,
                         public proposition::IsEmptyPropositions<MultiMapSubject<T>, T>,
-                        public proposition::IsEqualToPropositions<MultiMapSubject<T>, T> {
+                        public proposition::IsEqualToPropositions<MultiMapSubject<T>, T>,
+                        public proposition::ContainsPropositions<MultiMapSubject<T>, T> {
   const T d_value;
 
  protected:

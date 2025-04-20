@@ -36,3 +36,17 @@ TEST(MultiSetTests, Size) {
   std::multiset<int> x{1, 2, 3};
   assertThat(x).hasSizeThat().isEqualTo(3);
 }
+
+TEST(MultiSetTests, Contains) {
+  std::multiset<int> x{1, 2, 3};
+  assertThat(x).contains(1);
+  assertThat(x).contains(2);
+  assertThat(x).contains(3);
+}
+
+TEST(MultiSetTests, DoesNotContain) {
+  std::multiset<int> x{1, 2, 3};
+  assertThat(x).doesNotContain(4);
+}
+
+

@@ -10,6 +10,7 @@ namespace assertcc::subject {
 
 template <typename C>
 class SetSubject : public virtual Base<C>,
+                   public proposition::ContainsPropositions<SetSubject<C>, C>,
                    public proposition::IsEmptyPropositions<SetSubject<C>, C>,
                    public proposition::IsEqualToPropositions<SetSubject<C>, C>,
                    public proposition::HasSizePropositions<SetSubject<C>, C> {
