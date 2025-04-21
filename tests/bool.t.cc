@@ -48,3 +48,36 @@ TEST(BoolSubjectTests, EqualTo) {
   assertThat(true).isEqualTo(true);
   assertThat(false).isEqualTo(false);
 }
+
+TEST(BoolSubjectTests, MethodChaining) {
+  bool b = true;
+  assertThat(b)
+      .isTrue()
+      .isEqualTo(true)
+      .isNotEqualTo(false)
+      .isTrue();
+}
+
+TEST(BoolSubjectTests, ExplicitBooleanConversion) {
+  bool b = true;
+  assertThat(static_cast<bool>(b)).isTrue();
+  assertThat(static_cast<bool>(false)).isFalse();
+}
+
+TEST(BoolSubjectTests, BooleanExpressions) {
+  bool b1 = true;
+  bool b2 = false;
+  assertThat(b1 && b2).isFalse();
+  assertThat(b1 || b2).isTrue();
+  assertThat(!b1).isFalse();
+  assertThat(!b2).isTrue();
+}
+
+TEST(BoolSubjectTests, ComparisonWithExpressions) {
+  int x = 5;
+  int y = 10;
+  assertThat(x < y).isTrue();
+  assertThat(x > y).isFalse();
+  assertThat(x == y).isFalse();
+  assertThat(x != y).isTrue();
+}
