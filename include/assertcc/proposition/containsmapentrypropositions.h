@@ -10,7 +10,6 @@ namespace assertcc::proposition {
 
 template <typename T, typename U>
 class ContainsMapEntryPropositions : public virtual subject::Base<U> {
-
  public:
   template <typename Key, typename Value>
   T& containsEntry(Key key, Value value) {

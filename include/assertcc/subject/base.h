@@ -27,9 +27,7 @@ class Base {
   int getLine() const { return d_line; }
   bool getFailOnError() const { return d_failOnError; }
   virtual const T* getObject() const = 0;
-  virtual const std::string getObjectAsString() const {
-    return getObjectAsString(*getObject());
-  }
+  virtual const std::string getObjectAsString() const { return getObjectAsString(*getObject()); }
   virtual const std::string getObjectAsString(const T& other) const = 0;
 
  public:

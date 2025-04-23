@@ -4,6 +4,7 @@
 #include <assertcc/subject/boolsubject.h>
 #include <assertcc/subject/complexsubject.h>
 #include <assertcc/subject/floatingsubject.h>
+#include <assertcc/subject/functionsubject.h>
 #include <assertcc/subject/genericsubject.h>
 #include <assertcc/subject/integralsubject.h>
 #include <assertcc/subject/iteratorssubject.h>
@@ -23,7 +24,6 @@
 #include <assertcc/subject/stringviewsubject.h>
 #include <assertcc/subject/uniqueptrsubject.h>
 #include <assertcc/subject/weakptrsubject.h>
-#include <assertcc/subject/functionsubject.h>
 
 #include <array>
 #include <concepts>
@@ -32,20 +32,21 @@
 #include <functional>
 #include <initializer_list>
 #include <list>
+#include <map>
+#include <queue>
+#include <span>
 #include <sstream>
 #include <stack>
 #include <string>
 #include <type_traits>
-#include <utility>
-#include <span>
-#include <unordered_set>
 #include <unordered_map>
-#include <map>
-#include <queue>
+#include <unordered_set>
+#include <utility>
 
 #if __cpp_lib_mdspan
-#include <mdspan>
 #include <assertcc/subject/mdspansubject.h>
+
+#include <mdspan>
 #endif
 
 #if __cpp_lib_flat_map
@@ -187,9 +188,13 @@ auto assert_that_internal(Adl dummy,
   return subject::MultiMapSubject(failOnError, file, line, v);
 }
 
-#ifdef __cpp_lib_flat_map  
+#ifdef __cpp_lib_flat_map
 
-template <typename Key, typename T, typename Compare, typename KeyContainer, typename MappedContainer>
+template <typename Key,
+          typename T,
+          typename Compare,
+          typename KeyContainer,
+          typename MappedContainer>
 auto assert_that_internal(Adl dummy,
                           bool failOnError,
                           const char* file,
@@ -198,7 +203,11 @@ auto assert_that_internal(Adl dummy,
   return subject::MapSubject(failOnError, file, line, v);
 }
 
-template <typename Key, typename T, typename Compare, typename KeyContainer, typename MappedContainer>
+template <typename Key,
+          typename T,
+          typename Compare,
+          typename KeyContainer,
+          typename MappedContainer>
 auto assert_that_internal(Adl dummy,
                           bool failOnError,
                           const char* file,
@@ -297,7 +306,7 @@ auto assert_that_internal(
 #ifdef __cpp_lib_mdspan
 template <typename T, typename U>
 auto assert_that_internal(
-    Adl dummy, bool failOnError, const char* file, int line, std::mdspan<T,U>& v) {
+    Adl dummy, bool failOnError, const char* file, int line, std::mdspan<T, U>& v) {
   return subject::MdspanSubject(failOnError, file, line, v);
 }
 #endif

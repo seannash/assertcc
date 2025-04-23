@@ -23,7 +23,7 @@ class IteratorsSubject {
 
   using value_t = typename std::iterator_traits<T>::value_type;
 
-protected:
+ protected:
   const T* getBegin() const { return &d_begin; }
   const T* getEnd() const { return &d_end; }
   const std::string getObjectAsString() const {
@@ -44,7 +44,6 @@ protected:
   const bool getFailOnError() const { return d_failOnError; };
   const char* getFile() const { return d_file; };
   const int getLine() const { return d_line; };
-
 
  public:
   IteratorsSubject(const bool failOnError, const char* file, int line, const T biter, const T eiter)
@@ -122,7 +121,6 @@ protected:
     int sz = std::distance(d_begin, d_end);
     return IntegralSubject<std::size_t>(d_failOnError, d_file, d_line, sz);
   }
-
 };
 
 }  // namespace assertcc::subject

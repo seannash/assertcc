@@ -1,8 +1,8 @@
 #pragma once
 
-#include <assertcc/subject/base.h>
 #include <assertcc/proposition/hassizepropositions.h>
 #include <assertcc/proposition/isemptypropositions.h>
+#include <assertcc/subject/base.h>
 
 #include <mdspan>
 
@@ -12,7 +12,6 @@ class MdspanSubject : public virtual Base<T>,
                       public proposition::HasSizePropositions<MdspanSubject<T>, T>,
                       public proposition::IsEmptyPropositions<MdspanSubject<T>, T> {
  public:
-
   MdspanSubject(bool failOnError, const char* file, int line, const T& v)
       : Base<T>(failOnError, file, line), d_object(v) {}
 
@@ -24,11 +23,11 @@ class MdspanSubject : public virtual Base<T>,
     std::stringstream ss;
     ss << "mdspan with elements: [";
     for (size_t i = 0; i < other.extent(0); ++i) {
-      //ss << other(i) << ", ";
+      // ss << other(i) << ", ";
     }
     ss << "]";
     return ss.str();
   }
 };
 
-} // namespace assertcc::subject
+}  // namespace assertcc::subject

@@ -10,7 +10,6 @@ namespace assertcc::proposition {
 
 template <typename T, typename U>
 class ExpiredPropositions : public virtual subject::Base<U> {
-
  public:
   T& isExpired() {
     if (!this->getObject()->expired()) {

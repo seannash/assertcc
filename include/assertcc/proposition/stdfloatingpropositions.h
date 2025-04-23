@@ -143,7 +143,6 @@ class FloatingPropositions : public virtual subject::Base<U> {
     }
     return *dynamic_cast<T*>(this);
   }
-
 };
 
 }  // namespace assertcc::proposition

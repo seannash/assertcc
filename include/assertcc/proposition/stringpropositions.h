@@ -12,7 +12,6 @@ namespace assertcc::proposition {
 
 template <typename T, typename U>
 class StringPropositions : public virtual subject::Base<U> {
-
  public:
   T& contains(const U& other) {
     if (this->getObject()->find(other) == std::string::npos) {

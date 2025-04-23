@@ -22,7 +22,6 @@ class StringViewSubject : public virtual Base<T>,
  public:
   StringViewSubject(const bool failOnError, const char* file, int line, const T& v)
       : Base<T>(failOnError, file, line), d_value(v) {}
-
 };
 
 }  // namespace assertcc::subject

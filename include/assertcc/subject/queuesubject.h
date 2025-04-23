@@ -3,8 +3,8 @@
 #include <assertcc/proposition/hasbackthatpropositions.h>
 #include <assertcc/proposition/hasfrontthatpropositions.h>
 #include <assertcc/proposition/hassizepropositions.h>
-#include <assertcc/proposition/isequaltopropositions.h>
 #include <assertcc/proposition/isemptypropositions.h>
+#include <assertcc/proposition/isequaltopropositions.h>
 #include <assertcc/subject/base.h>
 
 #include <queue>

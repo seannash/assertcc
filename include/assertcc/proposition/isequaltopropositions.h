@@ -8,9 +8,7 @@ namespace assertcc::proposition {
 
 template <typename T, typename U>
 class IsEqualToPropositions : public virtual subject::Base<U> {
-
  public:
- 
   T& isEqualTo(const U& other) {
     if (!(*this->getObject() == other)) {
       util::FailMessage::create()

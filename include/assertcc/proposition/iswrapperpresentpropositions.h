@@ -10,7 +10,6 @@ namespace assertcc::proposition {
 
 template <typename T, typename U>
 class IsWrapperPresentPropositions : public virtual subject::Base<U> {
-
  public:
   T& isPresent() {
     if (!*this->getObject()) {
@@ -24,7 +23,6 @@ class IsWrapperPresentPropositions : public virtual subject::Base<U> {
     }
     return *dynamic_cast<T*>(this);
   }
-
 };
 
 }  // namespace assertcc::proposition

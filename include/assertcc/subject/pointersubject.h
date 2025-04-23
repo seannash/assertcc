@@ -27,7 +27,6 @@ class PointerSubject : public virtual Base<T>,
     ss << "a pointer to " << other;
     return ss.str();
   }
-  
 
  public:
   PointerSubject(const bool failOnError, const char* file, int line, const T v)

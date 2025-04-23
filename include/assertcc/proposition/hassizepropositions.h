@@ -9,7 +9,6 @@ namespace assertcc::proposition {
 
 template <typename T, typename U>
 class HasSizePropositions : public virtual subject::Base<U> {
-
  public:
   T& hasSize(std::size_t size) {
     if (this->getObject()->size() != size) {
@@ -25,12 +24,8 @@ class HasSizePropositions : public virtual subject::Base<U> {
 
   subject::IntegralSubject<std::size_t> hasSizeThat() {
     return subject::IntegralSubject<std::size_t>(
-        this->getFailOnError(),
-        this->getFile(),
-        this->getLine(),
-        this->getObject()->size());
+        this->getFailOnError(), this->getFile(), this->getLine(), this->getObject()->size());
   }
-
 };
 
 }  // namespace assertcc::proposition

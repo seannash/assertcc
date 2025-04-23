@@ -9,10 +9,9 @@
 namespace assertcc::subject {
 
 template <typename T>
-class ComplexSubject
-    : public virtual Base<T>,
-      public proposition::IsEqualToPropositions<ComplexSubject<T>, T>,
-      public proposition::IsInPropositions<ComplexSubject<T>, T> {
+class ComplexSubject : public virtual Base<T>,
+                       public proposition::IsEqualToPropositions<ComplexSubject<T>, T>,
+                       public proposition::IsInPropositions<ComplexSubject<T>, T> {
   const T d_value;
 
  protected:
@@ -26,7 +25,6 @@ class ComplexSubject
  public:
   ComplexSubject(const bool failOnError, const char* file, int line, const T v)
       : Base<T>(failOnError, file, line), d_value(v) {}
-
 };
 
 }  // namespace assertcc::subject

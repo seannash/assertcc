@@ -29,7 +29,7 @@ class FailMessage {
     return *this;
   }
 
-  template<typename T>
+  template <typename T>
   FailMessage& fact(const std::string& key, const T& value) {
     d_buffer << key << ": " << value << "\n";
     return *this;

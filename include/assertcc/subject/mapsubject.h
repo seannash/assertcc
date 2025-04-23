@@ -7,12 +7,12 @@
 #include <assertcc/proposition/isequaltopropositions.h>
 #include <assertcc/subject/base.h>
 
+#include <functional>
 #include <map>
 #include <optional>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <functional>
 
 namespace assertcc::subject {
 
@@ -42,10 +42,9 @@ class MapSubject : public virtual Base<T>,
     return ss.str();
   }
 
-  public:
-    MapSubject(const bool failOnError, const char* file, int line, const T& v)
+ public:
+  MapSubject(const bool failOnError, const char* file, int line, const T& v)
       : Base<T>(failOnError, file, line), d_value(v) {}
-
 };
 
 }  // namespace assertcc::subject

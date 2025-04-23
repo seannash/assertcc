@@ -2,8 +2,8 @@
 
 #include <assertcc/proposition/hasvaluethatpropositions.h>
 #include <assertcc/proposition/isequaltopropositions.h>
-#include <assertcc/proposition/iswrapperpresentpropositions.h>
 #include <assertcc/proposition/iswrapperemptypropositions.h>
+#include <assertcc/proposition/iswrapperpresentpropositions.h>
 #include <assertcc/proposition/valuecontainerpropositions.h>
 #include <assertcc/subject/base.h>
 
@@ -37,7 +37,6 @@ class OptionalSubject : public virtual Base<T>,
  public:
   OptionalSubject(const bool failOnError, const char* file, int line, const T& v)
       : Base<T>(failOnError, file, line), d_value(v) {}
-
 };
 
 }  // namespace assertcc::subject

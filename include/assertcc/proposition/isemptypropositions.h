@@ -8,7 +8,6 @@ namespace assertcc::proposition {
 
 template <typename T, typename U>
 class IsEmptyPropositions : public virtual subject::Base<U> {
-
  public:
   T& isEmpty() {
     if (!this->getObject()->empty()) {

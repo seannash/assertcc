@@ -7,10 +7,10 @@
 
 #include <map>
 #include <optional>
+#include <set>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <set>
 
 namespace assertcc::subject {
 
@@ -43,7 +43,6 @@ class MultiMapSubject : public virtual Base<T>,
  public:
   MultiMapSubject(const bool failOnError, const char* file, int line, const T& v)
       : Base<T>(failOnError, file, line), d_value(v) {}
-
 };
 
 }  // namespace assertcc::subject

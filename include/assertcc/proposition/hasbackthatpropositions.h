@@ -9,13 +9,12 @@ template <typename T, typename U>
 class HasBackThatPropositions : virtual public subject::Base<U> {
  public:
   auto hasBackThat() {
-    return assert_that_internal(
-        assertcc::Adl(),
-        this->getFailOnError(),
-        this->getFile(),
-        this->getLine(),
-        this->getObject()->back());
+    return assert_that_internal(assertcc::Adl(),
+                                this->getFailOnError(),
+                                this->getFile(),
+                                this->getLine(),
+                                this->getObject()->back());
   }
 };
 
-}  // namespace assertcc::proposition 
+}  // namespace assertcc::proposition

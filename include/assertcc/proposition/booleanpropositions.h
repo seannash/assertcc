@@ -7,7 +7,6 @@ namespace assertcc::proposition {
 
 template <typename T>
 class BooleanPropositions : public virtual subject::Base<bool> {
-
  public:
   T& isTrue() {
     if (*this->getObject() != true) {
@@ -36,4 +35,4 @@ class BooleanPropositions : public virtual subject::Base<bool> {
   }
 };
 
-}  // namespace assertcc::proposition 
+}  // namespace assertcc::proposition

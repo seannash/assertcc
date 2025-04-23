@@ -3,13 +3,13 @@
 #include <assertcc/subject/base.h>
 #include <assertcc/util/failmessage.h>
 #include <memory.h>
+
 #include <functional>
 
 namespace assertcc::proposition {
 
 template <typename T, typename U>
 class ValueContainsPropositions : public virtual subject::Base<U> {
-
  public:
   T& contains(const U& other) {
     if (!this->getObject()->value() == other) {
@@ -35,7 +35,6 @@ class ValueContainsPropositions : public virtual subject::Base<U> {
     }
     return *dynamic_cast<T*>(this);
   }
-
 };
 
 }  // namespace assertcc::proposition

@@ -6,7 +6,6 @@
 
 using namespace testing;
 
-
 TEST(PairTests, IsEqualTo) {
   std::pair<int, int> x{1, 2};
   std::pair<int, int> y{1, 2};

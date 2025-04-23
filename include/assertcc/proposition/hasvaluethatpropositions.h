@@ -10,15 +10,13 @@ namespace assertcc::proposition {
 
 template <typename U>
 class HasValueThatPropositions : public virtual subject::Base<U> {
-
  public:
   auto hasValueThat() {
-    return assert_that_internal(
-        assertcc::Adl(),
-        this->getFailOnError(),
-        this->getFile(),
-        this->getLine(),
-        **this->getObject());
+    return assert_that_internal(assertcc::Adl(),
+                                this->getFailOnError(),
+                                this->getFile(),
+                                this->getLine(),
+                                **this->getObject());
   }
 };
 

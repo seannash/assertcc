@@ -9,13 +9,12 @@ template <typename T, typename U>
 class HasFrontThatPropositions : virtual public subject::Base<U> {
  public:
   auto hasFrontThat() {
-    return assert_that_internal(
-        assertcc::Adl(),
-        this->getFailOnError(),
-        this->getFile(),
-        this->getLine(),
-        this->getObject()->front());
+    return assert_that_internal(assertcc::Adl(),
+                                this->getFailOnError(),
+                                this->getFile(),
+                                this->getLine(),
+                                this->getObject()->front());
   }
 };
 
-}  // namespace assertcc::proposition 
+}  // namespace assertcc::proposition

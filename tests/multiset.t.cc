@@ -48,5 +48,3 @@ TEST(MultiSetTests, DoesNotContain) {
   std::multiset<int> x{1, 2, 3};
   assertThat(x).doesNotContain(4);
 }
-
-

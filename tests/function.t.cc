@@ -1,17 +1,14 @@
 #include <assertcc/assertcc.h>
 #include <gtest/gtest.h>
 
-#include <memory>
 #include <functional>
+#include <memory>
 
 using namespace testing;
 
-int foo(int a, int b) {
-  return a + b;
-}
+int foo(int a, int b) { return a + b; }
 
-void bar()
-{}
+void bar() {}
 
 TEST(FunctionTests, IsNull) {
   std::function<int(int, int)> func(nullptr);

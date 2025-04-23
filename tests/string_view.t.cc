@@ -34,4 +34,3 @@ TEST(StringView, HasSize) {
   std::string_view sv(str);
   assertThat(sv).hasLength(5);
 }
-

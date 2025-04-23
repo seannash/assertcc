@@ -10,7 +10,7 @@ namespace assertcc::subject {
 
 template <typename T>
 class IntegralSubject : public virtual Base<T>,
-public proposition::IsEqualToPropositions<IntegralSubject<T>, T>,
+                        public proposition::IsEqualToPropositions<IntegralSubject<T>, T>,
                         public proposition::IsInPropositions<IntegralSubject<T>, T>,
                         public proposition::ComparisonPropositions<IntegralSubject<T>, T> {
   const T d_value;
@@ -24,7 +24,6 @@ public proposition::IsEqualToPropositions<IntegralSubject<T>, T>,
  public:
   IntegralSubject(const bool failOnError, const char* file, int line, const T& v)
       : Base<T>(failOnError, file, line), d_value(v) {}
-
 };
 
 }  // namespace assertcc::subject

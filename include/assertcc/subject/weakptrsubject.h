@@ -15,7 +15,6 @@ template <typename T>
 class WeakPtrSubject : virtual public Base<T>,
                        public proposition::ExpiredPropositions<WeakPtrSubject<T>, T>,
                        public proposition::IsPresentPropositions<WeakPtrSubject<T>, T> {
-
   const T d_value;
 
  protected:
@@ -36,11 +35,8 @@ class WeakPtrSubject : virtual public Base<T>,
 
   auto value() {
     auto sp = this->getObject()->lock();
-    return assert_that_internal(assertcc::Adl(), 
-                              this->getFailOnError(), 
-                              this->getFile(), 
-                              this->getLine(), 
-                              *sp);
+    return assert_that_internal(
+        assertcc::Adl(), this->getFailOnError(), this->getFile(), this->getLine(), *sp);
   }
 };
 

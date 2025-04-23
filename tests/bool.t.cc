@@ -51,11 +51,7 @@ TEST(BoolSubjectTests, EqualTo) {
 
 TEST(BoolSubjectTests, MethodChaining) {
   bool b = true;
-  assertThat(b)
-      .isTrue()
-      .isEqualTo(true)
-      .isNotEqualTo(false)
-      .isTrue();
+  assertThat(b).isTrue().isEqualTo(true).isNotEqualTo(false).isTrue();
 }
 
 TEST(BoolSubjectTests, ExplicitBooleanConversion) {

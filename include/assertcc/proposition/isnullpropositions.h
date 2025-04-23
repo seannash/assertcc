@@ -8,7 +8,6 @@ namespace assertcc::proposition {
 
 template <typename T, typename U>
 class IsNullPropositions : public virtual subject::Base<U> {
-
  public:
   T& isNull() {
     if (*this->getObject()) {

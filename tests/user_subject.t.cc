@@ -27,15 +27,12 @@ class FooSubject : public virtual assertcc::subject::Base<Foo>,
 
  protected:
   const Foo* getObject() const override { return &d_value; }
-  const std::string getObjectAsString() const override {
-    return getObjectAsString(*getObject());
-  }
+  const std::string getObjectAsString() const override { return getObjectAsString(*getObject()); }
   const std::string getObjectAsString(const Foo& other) const override {
     std::stringstream ss;
     ss << other;
     return ss.str();
   }
-
 
  public:
   FooSubject(const bool failOnError, const char* file, int line, const Foo& v)

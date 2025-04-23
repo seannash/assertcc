@@ -12,7 +12,6 @@ namespace proposition {
 
 template <typename T, typename U>
 class IsFunctionEqualToPropositions : public virtual subject::Base<U> {
-
  public:
   T& isEqualTo(const U& other) {
     if (!(*this->getObject() == other)) {

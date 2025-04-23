@@ -36,8 +36,6 @@ class SetSubject : public virtual Base<C>,
     ss << "}";
     return ss.str();
   }
-
 };
-
 
 }  // namespace assertcc::subject

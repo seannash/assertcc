@@ -25,13 +25,14 @@ class FloatingSubject : public virtual Base<T>,
 
  public:
   FloatingSubject(const bool failOnError, const char* file, int line, const T v)
-      : Base<T>(failOnError, file, line), d_value(v), d_tolerance(std::numeric_limits<T>::epsilon()) {}
+      : Base<T>(failOnError, file, line),
+        d_value(v),
+        d_tolerance(std::numeric_limits<T>::epsilon()) {}
 
   FloatingSubject& isWithin(const T& tolerance) {
     d_tolerance = tolerance;
     return *this;
   }
-
 };
 
 }  // namespace assertcc::subject

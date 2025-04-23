@@ -24,10 +24,10 @@ class PriorityQueueSubject : public virtual Base<T>,
     }
     return ss.str();
   }
+
  public:
   PriorityQueueSubject(const bool failOnError, const char* file, int line, const T& v)
       : Base<T>(failOnError, file, line), d_value(v) {}
-
 };
 
 }  // namespace assertcc::subject

@@ -54,6 +54,6 @@ TEST(FlatMapTests, ContainsKey) {
 TEST(FlatMapTests, DoesNotContainsKey) {
   std::flat_map<std::string, int> x{{"a", 1}, {"b", 2}};
   assertThat(x).doesNotContainKey("d");
-} 
+}
 
 #endif

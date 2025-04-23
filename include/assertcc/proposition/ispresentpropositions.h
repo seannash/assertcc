@@ -10,7 +10,6 @@ namespace assertcc::proposition {
 
 template <typename T, typename U>
 class IsPresentPropositions : public virtual subject::Base<U> {
-
  public:
   T& isPresent() {
     if (!this->getObject()->present()) {

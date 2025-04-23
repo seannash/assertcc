@@ -11,7 +11,6 @@ namespace assertcc::proposition {
 
 template <typename T, typename U>
 class HasLengthPropositions : public virtual subject::Base<U> {
-
  public:
   T& hasLength(const std::size_t length) {
     if (this->getObject()->length() != length) {
@@ -27,10 +26,7 @@ class HasLengthPropositions : public virtual subject::Base<U> {
 
   subject::IntegralSubject<std::size_t> hasLengthThat() {
     return subject::IntegralSubject<std::size_t>(
-        this->getFailOnError(),
-        this->getFile(),
-        this->getLine(),
-        this->getObject()->length());
+        this->getFailOnError(), this->getFile(), this->getLine(), this->getObject()->length());
   }
 };
 

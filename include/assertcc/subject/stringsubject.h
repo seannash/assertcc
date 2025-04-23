@@ -8,7 +8,6 @@
 #include <assertcc/proposition/stringpropositions.h>
 #include <assertcc/subject/base.h>
 
-
 #include <string>
 
 namespace assertcc::subject {
@@ -29,7 +28,6 @@ class StringSubject : public virtual Base<T>,
  public:
   StringSubject(const bool failOnError, const char* file, int line, const T& v)
       : Base<T>(failOnError, file, line), d_value(v) {}
-      
 };
 
 }  // namespace assertcc::subject

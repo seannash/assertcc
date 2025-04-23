@@ -66,9 +66,3 @@ TEST(QueueTests, frontAndBackWithSingleElement) {
   assertThat(x).hasFrontThat().isEqualTo(42);
   assertThat(x).hasBackThat().isEqualTo(42);
 }
-
-
-
-
-
-
